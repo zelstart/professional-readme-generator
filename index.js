@@ -2,12 +2,8 @@
 const fs = require('fs');
 const inquirer = require('inquirer');
 
-// TODO: Create an array of questions for user input
-// const questions = [
 
-// ];
-
-function createDoc({ projectName, desc, install, usage, contribution, license, test, questions, email, github}) {
+function createDoc({ projectName, desc, install, usage, contribution, license, tests, questions, email, github}) {
 return `
 # ${projectName}
 
@@ -49,8 +45,8 @@ You can email me at @{email}
 `
 }
 
-
-
+// TODO: Create a function to initialize app
+function init() {
 inquirer
     .prompt([
         {
@@ -114,25 +110,33 @@ inquirer
     ])
     .then((answers) => {
         const mdContent = createDoc(answers);
+        writeToFile('README.md', mdContent)
 
-        fs.writeFile('README.md', mdContent)
-      })
-      .catch((error) => {
-        if (error.isTtyError) {
-          // Prompt couldn't be rendered in the current environment
-        } else {
-          // Something else went wrong
-        }
-      });
+        })
+        .catch((error) => {
+          if (error.isTtyError) {
+            console.log("Prompt couldn't be rendered in the current environment.");
+          } else {
+            console.log('An error occurred:', error);
+          }
+        });
 
-
+    }
 
 
 // TODO: Create a function to write README file
-function writeToFile(fileName, data) {}
+function writeToFile(fileName, data, err) {
+    fs.writeFile('README.md', mdContent, (err) => {
+        if (err) {
+          console.error('Error writing README:', err);
+        } else {
+          console.log('README created successfully.');
+        }
+      });
+}
 
-// TODO: Create a function to initialize app
-function init() {}
+
+
 
 // Function call to initialize app
 init();
