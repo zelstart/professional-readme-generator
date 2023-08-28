@@ -1,8 +1,7 @@
-// TODO: Include packages needed for this application
 const fs = require('fs');
 const inquirer = require('inquirer');
 
-
+// creates the structure for the document, and plugs in data gathered from user input to fill it in.
 function createDoc({ projectName, desc, install, usage, contribution, license, badge, tests, questions, email, github }) {
     return `
 # ${projectName}
@@ -46,6 +45,7 @@ You can email me at ${email}
 `
 }
 
+// object for license badges 
 let licenseBadges = [
     {
         license: "Apache 2.0",
@@ -70,8 +70,7 @@ let licenseBadges = [
 ]
 
 
-
-// TODO: Create a function to initialize app
+// question prompts
 function init() {
     inquirer
         .prompt([
@@ -133,9 +132,10 @@ function init() {
                 message: "What is your email address?"
             },
         ])
+        // take answers and use them to populate the document. 
         .then((answers) => {
             const selectedLicense = answers.license;
-            const selectedBadge = licenseBadges.find(item => item.license === selectedLicense).badge;
+            const selectedBadge = licenseBadges.find(item => item.license === selectedLicense).badge; // compare license answer with our license storage to grab img for badge
             const mdContent = createDoc({ ...answers, badge: selectedBadge }); 
             writeToFile('generatedREADME.md', mdContent);
         })
