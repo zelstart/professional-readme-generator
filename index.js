@@ -32,10 +32,10 @@ ${license}
 ## Contributing
 ${contribution}
 
-## Tests
+## Test Instructions
 ${tests}
 
-## Questions
+## Questions/FAQ
 ${questions}
 
 ## Contact Me
