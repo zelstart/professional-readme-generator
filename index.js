@@ -144,6 +144,7 @@ function init() {
         });
 }
 
+// function to actual write the file, and confirm in the terminal that a file was created
 function writeToFile(fileName, data) {
     fs.writeFile(fileName, data, (err) => {
         if (err) {
