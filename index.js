@@ -16,8 +16,8 @@ ${desc}
 - [Usage](#usage)
 - [License](#license)
 - [Contributing](#contributing)
-- [Tests](#tests)
-- [Questions](#questions)
+- [Test Instructions](#tests)
+- [Questions/FAQ](#questions)
 - [Contact Me](#contact-me)
 
 ## Installation
