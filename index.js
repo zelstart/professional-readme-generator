@@ -70,7 +70,7 @@ let licenseBadges = [
 ]
 
 
-// question prompts
+// question prompts for user, using inquirer package
 function init() {
     inquirer
         .prompt([
@@ -132,7 +132,7 @@ function init() {
                 message: "What is your email address?"
             },
         ])
-        // take answers and use them to populate the document. 
+        // take user's answers and populate the readme template with them.
         .then((answers) => {
             const selectedLicense = answers.license;
             const selectedBadge = licenseBadges.find(item => item.license === selectedLicense).badge; // compare license answer with our license storage to grab img for badge
@@ -144,7 +144,7 @@ function init() {
         });
 }
 
-// function to actual write the file, and confirm in the terminal that a file was created
+// the function to actually write the file, and confirm in the terminal that a file was created
 function writeToFile(fileName, data) {
     fs.writeFile(fileName, data, (err) => {
         if (err) {
